@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CourseVM>
+
+@{
+    ViewBag.Title = "List of Courses Available";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Course List </h2>
+
+
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+       
+
+
+        <th>Operation</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
+                @Html.ActionLink("Create", "CreateCourse")
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,66 @@
+﻿@model CourseVM
+
+@{
+    ViewBag.Title = "Course Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Course Details</h2>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseDiscription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvailabeSeats)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(model => model.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CourseDiscription)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.AvailabeSeats)
+        </td>
+       
+    </tr>
+</table>
+
+<button onclick="enrollNow(@Model.Id)">Enroll Now</button>
+
+@section Scripts {
+    <script>
+        function enrollNow(courseId) {
+            // Add your JavaScript logic to enroll the user in the course with the specified courseId.
+            // For example, you can send an AJAX request to the server to enroll the user.
+            // You can also redirect the user to an enrollment page.
+            // Implement the logic based on your application requirements.
+            alert('Enroll Now clicked for Course Id: ' + courseId);
+        }
+    </script>
+}
