@@ -10,6 +10,14 @@ namespace NewUtility
     {
         public const string StatusPending = "Pending";
         public const string StatusApproved = "Approved";
+
+        public const string Student_Role = "Student";
+
+        public const string Admin_Role = "Admin";
+
+
+
+
     }
 
 }

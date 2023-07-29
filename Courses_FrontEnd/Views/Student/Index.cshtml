@@ -1,0 +1,71 @@
+﻿@model IEnumerable<StudentsVM>
+
+@{
+    ViewBag.Title = "List of Courses Available";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Enrolled Students</h2>
+@Html.ActionLink("Add New Student !", "")
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseId)
+        </th>
+        @if (User.IsInRole(SD.Admin_Role))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            <th>Operation</th>
+
+            </th>
+        }
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
+            <td>
+               
+
+                    @Html.DisplayFor(modelItem => item.Email)
+                
+            </td>
+            
+                <td>
+
+
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+
+
+                </td>
+
+            </tr>
+    }
+
+</table>
+
+

@@ -1,5 +1,6 @@
 ﻿
 using Course_Backend.Models;
+using Course_Backend.Repository;
 using Course_Backend.Repository.IRepository;
 using Courses_FrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -24,14 +25,14 @@ namespace Course_Backend.Controller
             try
             {
                 var courses = await _course.GetAllAsync();
-                return Ok(courses); 
+                return Ok(courses);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, "An error occurred while fetching courses.");
             }
         }
-        
+
 
 
 
@@ -80,7 +81,7 @@ namespace Course_Backend.Controller
                 await _course.RemoveAsync(course);
                 await _course.SaveAsync();
 
-                return NoContent(); 
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -88,7 +89,7 @@ namespace Course_Backend.Controller
             }
         }
 
-        
+
 
         [HttpPost]
         public async Task<IActionResult> CreateCourse([FromBody] CourseDetail newCourse)
@@ -161,7 +162,7 @@ namespace Course_Backend.Controller
             }
         }
 
-
+       
+     
     }
-
 }

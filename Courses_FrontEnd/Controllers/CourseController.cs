@@ -1,11 +1,17 @@
 ﻿using Courses_FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NewUtility;
 using System.Net;
+using System.Net.Http;
 
 namespace Courses_FrontEnd.Controllers
 {
     public class CourseController : Controller
     {
+
+
+        [Authorize()]
         public IActionResult Index()
         {
             IEnumerable<CourseVM> courses = null;
@@ -89,8 +95,9 @@ namespace Courses_FrontEnd.Controllers
                     ModelState.AddModelError(string.Empty, "An error occurred while deleting the course.");
                 }
             }
+            TempData["success"] = "Course Deleted successfully!";
 
-           
+
             return View("Details");
         }
 
@@ -126,6 +133,7 @@ namespace Courses_FrontEnd.Controllers
                         }
                     }
                 }
+                TempData["success"] = "Course created successfully!";
 
                 return View(course);
             }
@@ -202,5 +210,7 @@ namespace Courses_FrontEnd.Controllers
                 return StatusCode(500, "An error occurred while updating the course.");
             }
         }
+
+       
     }
 }

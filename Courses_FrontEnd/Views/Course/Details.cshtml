@@ -51,16 +51,10 @@
     </tr>
 </table>
 
-<button onclick="enrollNow(@Model.Id)">Enroll Now</button>
+@Html.ActionLink("Enroll Now", "Enroll", "Enrollment", new { id = Model.Id }, new { @class = "btn btn-primary" })
 
 @section Scripts {
     <script>
-        function enrollNow(courseId) {
-            // Add your JavaScript logic to enroll the user in the course with the specified courseId.
-            // For example, you can send an AJAX request to the server to enroll the user.
-            // You can also redirect the user to an enrollment page.
-            // Implement the logic based on your application requirements.
-            alert('Enroll Now clicked for Course Id: ' + courseId);
-        }
+
     </script>
 }

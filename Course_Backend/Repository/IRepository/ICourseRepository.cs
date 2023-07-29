@@ -4,6 +4,7 @@ namespace Course_Backend.Repository.IRepository
 {
     public interface ICourseRepository : IRepository<CourseDetail>
     {
-        Task<CourseDetail> UpdateAsync(CourseDetail entity);
+/*        object FirstOrDefaultAsync(Func<object, bool> value);
+*/        Task<CourseDetail> UpdateAsync(CourseDetail entity);
     }
 }

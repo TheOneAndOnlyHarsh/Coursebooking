@@ -1,4 +1,5 @@
 ﻿using Course_Backend.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Course_Backend.Data
@@ -10,7 +11,15 @@ namespace Course_Backend.Data
            : base(options)
         {
         }
+
         public DbSet<CourseDetail> CourseDetails { get; set; }
+        public DbSet<Students> Students { get; set; }
+
+        public DbSet<LocalUser> LocalUsers { get; set; }
+
+
+
+
 
     }
 }

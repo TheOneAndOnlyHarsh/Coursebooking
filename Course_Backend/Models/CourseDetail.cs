@@ -14,7 +14,9 @@ namespace Course_Backend.Models
         public DateOnly EndDate { get; set;}
         public int AvailabeSeats { get; set;}
 
+        public decimal? CoursePrice { get; set; }
         public string? Status { get; set; } 
+
 
 
 

@@ -11,6 +11,8 @@
         public DateOnly EndDate { get; set; }
         public int AvailabeSeats { get; set; }
 
-        public string? Status { get; set; }  
+        public string? Status { get; set; }
+        
+        public string? ImageUrl { get; set; }   
     }
 }
