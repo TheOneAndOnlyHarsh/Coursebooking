@@ -15,7 +15,14 @@ namespace Courses_FrontEnd.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var courses = new List<CourseVM>
+         {
+            new CourseVM { CourseName = "Oops with Java", ImageUrl = "https://www.wemakescholars.com/uploads/blog/TopprofessionalITcoursetopursueincollege.jpg"  },
+            new CourseVM { CourseName = "Ethical Hacking", ImageUrl = "https://www.wemakescholars.com/uploads/blog/TopprofessionalITcoursetopursueincollege.jpg"  },
+            new CourseVM { CourseName = "Mastering.net", ImageUrl = "https://www.wemakescholars.com/uploads/blog/TopprofessionalITcoursetopursueincollege.jpg"  },
+
+         };
+            return View(courses);
         }
 
         public IActionResult Privacy()

@@ -9,7 +9,7 @@
 
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public int AvailabeSeats { get; set; }
+        public int? AvailabeSeats { get; set; }
 
         public string? Status { get; set; }
         

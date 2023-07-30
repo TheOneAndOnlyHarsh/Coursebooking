@@ -1,4 +1,5 @@
 ﻿using Course_Backend.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Course_Backend.Controller
@@ -17,6 +18,7 @@ namespace Course_Backend.Controller
 
         [HttpGet]
         [Route("/Enroll")]
+        /*[Authorize(Roles ="Student")]*/
         public async Task<IActionResult> EnrollCourse(int courseId)
         {
             try
@@ -44,8 +46,10 @@ namespace Course_Backend.Controller
 
         }
         [HttpGet]
-        [Route("/UnEnroll")]
-        public async Task<IActionResult> UnEnrollCourse(int courseId)
+        [Route("/Unenroll")]
+/*        [Authorize(Roles = "Student")]
+*/
+        public async Task<IActionResult> UnenrollCourse(int courseId)
         {
             try
             {

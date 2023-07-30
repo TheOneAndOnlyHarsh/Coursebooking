@@ -1,10 +1,12 @@
+using AspNetCoreHero.ToastNotification;
 using Courses_FrontEnd.Data;
 using Courses_FrontEnd.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-
+/*using NToastNotify;
+*/
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultSQLConnection");
@@ -18,6 +20,22 @@ builder.Services.ConfigureApplicationCookie(options => {
     options.LogoutPath = $"/Identity/Account/Logout";
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
+
+/*builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+{
+    ProgressBar = true,
+    Timeout = 5000
+});*/
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBackend", builder =>
+    {
+        builder.WithOrigins("https://localhost:7230")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 // Add services to the container.
@@ -41,6 +59,10 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+/*app.UseNToastNotify();
+*/
+app.UseCors("AllowBackend");
+
 app.MapRazorPages();
 
 app.MapControllerRoute(

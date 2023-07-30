@@ -3,6 +3,7 @@ using Course_Backend.Models;
 using Course_Backend.Repository;
 using Course_Backend.Repository.IRepository;
 using Courses_FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -62,7 +63,8 @@ namespace Course_Backend.Controller
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse(int id)
+/*        [Authorize]
+*/        public async Task<IActionResult> DeleteCourse(int id)
         {
             try
             {
@@ -106,7 +108,7 @@ namespace Course_Backend.Controller
                 await _course.CreateAsync(newCourse);
                 await _course.SaveAsync();
 
-                // Return the newly created course details in the response.
+               
                 return CreatedAtAction("GetCourseById", new { id = newCourse.Id }, newCourse);
             }
             catch (Exception ex)
@@ -154,7 +156,7 @@ namespace Course_Backend.Controller
                 await _course.UpdateAsync(existingCourse);
                 await _course.SaveAsync();
 
-                return Ok(existingCourse); // Return the updated course details in the response.
+                return Ok(existingCourse);
             }
             catch (Exception ex)
             {

@@ -1,8 +1,32 @@
-﻿@{
+﻿@model List<CourseVM>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bestsellers</h1>
+</div>
+<div class="container">
+    <div class="row">
+        @foreach (var course in Model)
+        {
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h1> </h1>
+                    <h4>@course.CourseName</h4>
+                </div>
+                <img src="@Url.Content(course.ImageUrl)" alt="@course.CourseName" class="img-fluid" />
+                <p class="text-center">
+
+                    <div class="text-center">
+                        <h1> </h1>
+                        <a asp-controller="Course" asp-for="Index" class="btn btn-primary">Enroll Now</a>
+
+                    </div>
+                </p>
+            </div>
+        }
+
+    </div>
 </div>

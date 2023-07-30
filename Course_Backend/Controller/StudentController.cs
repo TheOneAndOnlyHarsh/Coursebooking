@@ -3,6 +3,7 @@ using Course_Backend.Data;
 using Course_Backend.Models;
 using Course_Backend.Models.DTO;
 using Course_Backend.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -70,6 +71,8 @@ namespace Course_Backend.Controller
         }
 
         [HttpDelete("{id}")]
+/*        [Authorize]
+*/
         public IActionResult DeleteStudent(int id)
         {
             var student = _db.Students.FirstOrDefault(s => s.Id == id);

@@ -106,7 +106,7 @@ namespace Course_Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPriceOfCourses")
+                    b.Property<decimal?>("TotalPriceOfCourses")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

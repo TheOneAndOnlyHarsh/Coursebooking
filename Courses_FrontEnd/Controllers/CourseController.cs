@@ -1,4 +1,5 @@
-﻿using Courses_FrontEnd.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Courses_FrontEnd.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewUtility;
@@ -7,11 +8,14 @@ using System.Net.Http;
 
 namespace Courses_FrontEnd.Controllers
 {
+   
+
+
     public class CourseController : Controller
     {
 
 
-        [Authorize()]
+        /* [Authorize()]*/
         public IActionResult Index()
         {
             IEnumerable<CourseVM> courses = null;
@@ -32,7 +36,7 @@ namespace Courses_FrontEnd.Controllers
                 }
                 else
                 {
-                    
+
 
                     courses = Enumerable.Empty<CourseVM>();
 
@@ -41,6 +45,8 @@ namespace Courses_FrontEnd.Controllers
             }
             return View(courses);
         }
+
+
         public IActionResult Details(int id)
         {
             CourseVM course = null;
@@ -92,10 +98,9 @@ namespace Courses_FrontEnd.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "An error occurred while deleting the course.");
+                    ModelState.AddModelError(string.Empty, "An error occurred while deleting the course. You are not authrized.");
                 }
             }
-            TempData["success"] = "Course Deleted successfully!";
 
 
             return View("Details");
@@ -133,8 +138,7 @@ namespace Courses_FrontEnd.Controllers
                         }
                     }
                 }
-                TempData["success"] = "Course created successfully!";
-
+                
                 return View(course);
             }
             catch (Exception ex)
@@ -210,6 +214,8 @@ namespace Courses_FrontEnd.Controllers
                 return StatusCode(500, "An error occurred while updating the course.");
             }
         }
+
+
 
        
     }

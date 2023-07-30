@@ -1,5 +1,15 @@
-﻿<h1>You have Successfully Enrolled For this course</h1>
+﻿@model CourseVM
+
+
+<h1>You have Successfully Enrolled For this course</h1>
 
 <p>
     @Html.ActionLink("Back to List", "Index", "Course", null, new { @class = "btn btn-secondary" })
+
+    @Html.ActionLink("Unenroll Now", "Unenrollment", "Enrollment", new { id = @Model.Id }, new { @class = "btn btn-primary" })
+
+   
+
 </p>
+
+

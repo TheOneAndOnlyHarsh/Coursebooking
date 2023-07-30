@@ -5,56 +5,74 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Course Details</h2>
+<style>
+    .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<table class="table">
-    <tr>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseDiscription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AvailabeSeats)
-        </th>
-        <th></th>
-    </tr>
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(model => model.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.CourseDiscription)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.AvailabeSeats)
-        </td>
-       
-    </tr>
-</table>
+    .course-info {
+        width: 100%; /* Take full width of the container */
+        max-width: 800px; /* Set a maximum width for better readability on larger screens */
+        text-align: left;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
 
-@Html.ActionLink("Enroll Now", "Enroll", "Enrollment", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    .course-info table {
+        width: 100%;
+    }
+
+    .course-info table tr td {
+        padding: 5px;
+    }
+
+    .course-info table tr td.label-column {
+        width: 40%; /* Adjust the width here to make the label column wider */
+        font-weight: bold;
+    }
+</style>
+
+<div class="center-content">
+    <div class="course-info">
+        <h2>Course Details</h2>
+        <table>
+            <tr>
+                <td class="label-column">Course Name:</td>
+                <td>@Html.DisplayFor(model => model.CourseName)</td>
+            </tr>
+            <tr>
+                <td class="label-column">Start Date:</td>
+                <td>@Html.DisplayFor(model => model.StartDate)</td>
+            </tr>
+            <tr>
+                <td class="label-column">End Date:</td>
+                <td>@Html.DisplayFor(model => model.EndDate)</td>
+            </tr>
+            <tr>
+                <td class="label-column">Course Description:</td>
+                <td>@Html.DisplayFor(model => model.CourseDiscription)</td>
+            </tr>
+            <tr>
+                <td class="label-column">Available Seats:</td>
+                <td>@Html.DisplayFor(model => model.AvailabeSeats)</td>
+            </tr>
+        </table>
+
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+        @Html.ActionLink("Enroll Now", "Enroll", "Enrollment", new { id = Model.Id }, new { @class = "btn btn-primary text-center" })
+    </div>
+</div>
 
 @section Scripts {
     <script>
-
+        // You can add any additional scripts here if needed.
     </script>
 }
