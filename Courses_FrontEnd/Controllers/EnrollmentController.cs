@@ -9,7 +9,7 @@ namespace Courses_FrontEnd.Controllers
 {
     public class EnrollmentController : Controller
     {
-        [Authorize]
+       
 
         public async Task<IActionResult> Enroll(int id)
         {
@@ -50,7 +50,7 @@ namespace Courses_FrontEnd.Controllers
 
         [HttpGet]
         [Route("Enrollment/Unenrollment/{id}")]
-        [Authorize]
+        
 
         public async Task<IActionResult> Unenrollment(int id)
         {

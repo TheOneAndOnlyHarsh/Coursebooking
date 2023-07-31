@@ -19,11 +19,11 @@
 
  } 
 
- (User.IsInRole(SD.Admin_Role))
+ @if(User.IsInRole(SD.Admin_Role))
 { 
     <div class="col-md-12">
         <label for="statusFilter">Filter by Status:</label>
-        <select id="statusFilter" class="form-control" onclick="((e)=>{console.log('function',e)">
+        <select id="statusFilter" class="form-control" >
             <option value="">All</option>
             <option value="@SD.StatusPending">Pending</option>
             <option value="@SD.StatusApproved">Approved</option>
@@ -63,7 +63,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
-               @if (User.IsInRole(SD.Admin_Role))
+               @if (User.IsInRole(SD.Admin_Role)){
                 
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
