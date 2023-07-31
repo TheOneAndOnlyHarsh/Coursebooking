@@ -71,8 +71,7 @@ namespace Course_Backend.Controller
         }
 
         [HttpDelete("{id}")]
-/*        [Authorize]
-*/
+
         public IActionResult DeleteStudent(int id)
         {
             var student = _db.Students.FirstOrDefault(s => s.Id == id);
@@ -88,6 +87,7 @@ namespace Course_Backend.Controller
         }
 
         [HttpPut("{id}")]
+
         public async Task<IActionResult> UpdateStudent(int id, [FromBody] StudentsCreateDTO updatedStudent)
         {
             if (!ModelState.IsValid)

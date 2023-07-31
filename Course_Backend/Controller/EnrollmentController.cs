@@ -18,7 +18,7 @@ namespace Course_Backend.Controller
 
         [HttpGet]
         [Route("/Enroll")]
-        /*[Authorize(Roles ="Student")]*/
+        [Authorize(Roles = "Student")]
         public async Task<IActionResult> EnrollCourse(int courseId)
         {
             try
@@ -47,8 +47,8 @@ namespace Course_Backend.Controller
         }
         [HttpGet]
         [Route("/Unenroll")]
-/*        [Authorize(Roles = "Student")]
-*/
+        [Authorize(Roles = "Student")]
+
         public async Task<IActionResult> UnenrollCourse(int courseId)
         {
             try

@@ -50,6 +50,8 @@ namespace Courses_FrontEnd.Controllers
 
         [HttpGet]
         [Route("Enrollment/Unenrollment/{id}")]
+        [Authorize]
+
         public async Task<IActionResult> Unenrollment(int id)
         {
             using (var client = new HttpClient())

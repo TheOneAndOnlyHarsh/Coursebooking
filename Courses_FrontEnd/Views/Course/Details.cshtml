@@ -14,8 +14,8 @@
     }
 
     .course-info {
-        width: 100%; /* Take full width of the container */
-        max-width: 800px; /* Set a maximum width for better readability on larger screens */
+        width: 100%;
+        max-width: 800px; 
         text-align: left;
         padding: 20px;
         border: 1px solid #ccc;
@@ -32,7 +32,7 @@
     }
 
     .course-info table tr td.label-column {
-        width: 40%; /* Adjust the width here to make the label column wider */
+        width: 40%; 
         font-weight: bold;
     }
 </style>
@@ -67,12 +67,19 @@
             @Html.ActionLink("Back to List", "Index")
         </p>
 
+        <p>
         @Html.ActionLink("Enroll Now", "Enroll", "Enrollment", new { id = Model.Id }, new { @class = "btn btn-primary text-center" })
+            </p>
+        <p>
+
+        @Html.ActionLink("Register & Enroll Now", "CreateStudent", "Student", new { id = Model.Id }, new { @class = "btn btn-primary text-center" })
+        </p>
+
     </div>
 </div>
 
 @section Scripts {
     <script>
-        // You can add any additional scripts here if needed.
+        
     </script>
 }

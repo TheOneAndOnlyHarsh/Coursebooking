@@ -15,7 +15,7 @@ namespace Courses_FrontEnd.Controllers
     {
 
 
-        /* [Authorize()]*/
+        
         public IActionResult Index()
         {
             IEnumerable<CourseVM> courses = null;
@@ -79,6 +79,8 @@ namespace Courses_FrontEnd.Controllers
 
             return View(course);
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             using (var client = new HttpClient())
@@ -103,7 +105,7 @@ namespace Courses_FrontEnd.Controllers
             }
 
 
-            return View("Details");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -113,6 +115,8 @@ namespace Courses_FrontEnd.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> CreateCourse(CourseVM course)
         {
             try

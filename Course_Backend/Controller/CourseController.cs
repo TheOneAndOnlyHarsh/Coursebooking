@@ -63,8 +63,8 @@ namespace Course_Backend.Controller
         }
 
         [HttpDelete("{id}")]
-/*        [Authorize]
-*/        public async Task<IActionResult> DeleteCourse(int id)
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> DeleteCourse(int id)
         {
             try
             {
@@ -94,6 +94,8 @@ namespace Course_Backend.Controller
 
 
         [HttpPost]
+
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> CreateCourse([FromBody] CourseDetail newCourse)
         {
             try
@@ -118,6 +120,8 @@ namespace Course_Backend.Controller
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> UpdateCourse(int id, [FromBody] CourseDetail updatedCourse)
         {
             try

@@ -1,15 +1,17 @@
 ﻿using Courses_FrontEnd.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NewUtility;
 using System.Net;
 
 namespace Courses_FrontEnd.Controllers
 {
     public class StudentController : Controller
     {
-        [Authorize]
+        
         public IActionResult Index()
         {
+
             IEnumerable<StudentsVM> students = null;
             using (var client = new HttpClient())
             {
@@ -43,6 +45,7 @@ namespace Courses_FrontEnd.Controllers
         }
 
         [HttpPost]
+
         public async Task<IActionResult> CreateStudent(StudentsVM student)
         {
             try
@@ -80,6 +83,8 @@ namespace Courses_FrontEnd.Controllers
         }
 
         [HttpGet]
+        [Authorize(SD.Admin_Role)]
+
         public async Task<IActionResult> Edit(int id)
         {
 
@@ -143,6 +148,7 @@ namespace Courses_FrontEnd.Controllers
                 return StatusCode(500, "An error occurred while updating the course.");
             }
         }
+        [Authorize(SD.Admin_Role)]
 
         public IActionResult Delete(int id)
         {

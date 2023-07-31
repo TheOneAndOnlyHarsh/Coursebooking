@@ -21,14 +21,14 @@
         <th>
             @Html.DisplayNameFor(model => model.CourseId)
         </th>
-        @if (User.IsInRole(SD.Admin_Role))
-        {
+       
             <th>
                 @Html.DisplayNameFor(model => model.Email)
+            </th>
+
             <th>Operation</th>
 
-            </th>
-        }
+  
 
 
 
@@ -48,8 +48,6 @@
                 @Html.DisplayFor(modelItem => item.CourseId)
             </td>
             <td>
-               
-
                     @Html.DisplayFor(modelItem => item.Email)
                 
             </td>
@@ -58,8 +56,8 @@
 
 
                     @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirmDelete();" })
+        
 
                 </td>
 
@@ -67,5 +65,11 @@
     }
 
 </table>
-
+@section scripts {
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this item?");
+        }
+    </script>
+}
 
