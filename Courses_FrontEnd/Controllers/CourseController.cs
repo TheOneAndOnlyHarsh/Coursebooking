@@ -22,7 +22,7 @@ namespace Courses_FrontEnd.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:7230/api/");
-                //HTTP GET
+                
                 var responseTask = client.GetAsync("Course");
                 responseTask.Wait();
 

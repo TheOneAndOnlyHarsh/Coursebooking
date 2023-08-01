@@ -7,7 +7,13 @@ namespace Course_Backend.Models
         [Key]
         
         public int Id { get; set; }
-        public string CourseName { get; set;} 
+
+        [Required]
+        [Range(1,100)]
+        public string CourseName { get; set;}
+
+        [Required]
+        [Range(1, 500)]
         public string CourseDiscription { get; set;}
             
         public DateOnly StartDate { get; set;}
