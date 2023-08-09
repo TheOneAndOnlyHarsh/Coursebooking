@@ -80,7 +80,7 @@ namespace Courses_FrontEnd.Controllers
             return View(course);
         }
 
-        [Authorize(Roles = "Admin")]
+       /* [Authorize(Roles = "Admin")]*/
         public IActionResult Delete(int id)
         {
             using (var client = new HttpClient())
@@ -115,8 +115,8 @@ namespace Courses_FrontEnd.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-
+/*        [Authorize(Roles = "Admin")]
+*/
         public async Task<IActionResult> CreateCourse(CourseVM course)
         {
             try

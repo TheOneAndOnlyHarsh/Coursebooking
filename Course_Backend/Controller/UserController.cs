@@ -59,7 +59,7 @@ namespace Course_Backend.Controllers
 
         [HttpGet]
 
-        [Authorize(Roles ="Admin")]
+       
 
         public async Task<IEnumerable<LocalUser>> GetAllAsync()
         {
@@ -68,7 +68,7 @@ namespace Course_Backend.Controllers
 
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin")]
+       
 
         public IActionResult GetUser(int id)
         {
@@ -83,8 +83,7 @@ namespace Course_Backend.Controllers
 
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
-
+       
         public IActionResult DeleteUser(int id)
         {
             var user = _db.LocalUsers.FirstOrDefault(s => s.Id == id);

@@ -83,8 +83,8 @@ namespace Courses_FrontEnd.Controllers
         }
 
         [HttpGet]
-        [Authorize(SD.Admin_Role)]
-
+/*        [Authorize(SD.Admin_Role)]
+*/
         public async Task<IActionResult> Edit(int id)
         {
 
@@ -148,8 +148,8 @@ namespace Courses_FrontEnd.Controllers
                 return StatusCode(500, "An error occurred while updating the course.");
             }
         }
-        [Authorize(SD.Admin_Role)]
-
+/*        [Authorize(SD.Admin_Role)]
+*/
         public IActionResult Delete(int id)
         {
             using (var client = new HttpClient())
