@@ -120,7 +120,7 @@ namespace Course_Backend.Controller
         }
 
         [HttpPut("{id}")]
-       
+
 
         public async Task<IActionResult> UpdateCourse(int id, [FromBody] CourseDetail updatedCourse)
         {
@@ -168,7 +168,45 @@ namespace Course_Backend.Controller
             }
         }
 
-       
-     
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> ApproveCourse(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    return BadRequest("Invalid Id. Please provide a valid Course Id.");
+                }
+
+                var existingCourse = await _course.GetAsync(id);
+
+                if (existingCourse == null)
+                {
+                    return NotFound($"Course with Id {id} not found.");
+                }
+
+                if (existingCourse.Status == NewUtility.SD.StatusPending)
+                {
+                    existingCourse.Status = NewUtility.SD.StatusApproved;
+                    await _course.UpdateAsync(existingCourse);
+                    await _course.SaveAsync();
+                    return Ok("Course status approved successfully.");
+                }
+                else if (existingCourse.Status == NewUtility.SD.StatusApproved)
+                {
+                    return BadRequest("Course is already approved.");
+                }
+                else
+                {
+                    return BadRequest("Course status cannot be approved.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while approving the course status.");
+            }
+        }
+
+
     }
 }

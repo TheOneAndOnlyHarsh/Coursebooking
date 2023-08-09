@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CourseVM>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Pending Courses for Approval</title>
+    <link rel="stylesheet" href="path-to-your-css-file.css">
+</head>
+<body>
+    <h1>List of Pending Courses for Approval</h1>
+
+    @if (TempData["success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }
+
+    @{
+        ViewBag.Title = "List of Pending Courses for Approval";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+    <table class="table" id="courseTable">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CourseName)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>@Html.DisplayNameFor(model => model.AvailabeSeats)</th>
+            <th>Operation</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CourseName)</td>
+                <td>
+                    @if (item.Status == "Pending")
+                    {
+                        @Html.DisplayFor(modelItem => item.Status)
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.AvailabeSeats)</td>
+                <td>
+                    @if (item.Status == "Pending")
+                    {
+                        <form method="post" asp-action="ApproveCourse" asp-route-courseId="@item.Id">
+                            <button type="submit">Approve</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    @section scripts {
+        <script>
+            function approveCourse(courseId) {
+                fetch(`/Course/ApproveCourse/${courseId}`, {
+                    method: 'PUT'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                       
+                        alert(data);
+                        window.location.reload();  
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        
+                    });
+            }
+        </script>
+    }    
+</body>
+</html>

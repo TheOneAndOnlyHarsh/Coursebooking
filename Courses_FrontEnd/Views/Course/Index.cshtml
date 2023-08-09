@@ -19,17 +19,7 @@
 
  } 
 
- @if(User.IsInRole(SD.Admin_Role))
-{ 
-    <div class="col-md-12">
-        <label for="statusFilter">Filter by Status:</label>
-        <select id="statusFilter" class="form-control" >
-            <option value="">All</option>
-            <option value="@SD.StatusPending">Pending</option>
-            <option value="@SD.StatusApproved">Approved</option>
-        </select>
-    </div>
- } 
+
 <table class="table" id="courseTable">
     <tr>
         <th>
@@ -45,6 +35,10 @@
         { 
             <th>
                 @Html.DisplayNameFor(model => model.Status)
+               ( @Html.ActionLink("Pending", "PendingList")  |
+                @Html.ActionLink("Approve", "ApprovedList"))
+
+
             </th>
             <th>Operation</th>
         }

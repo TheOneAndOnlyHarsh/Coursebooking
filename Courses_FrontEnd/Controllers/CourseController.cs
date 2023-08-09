@@ -219,8 +219,99 @@ namespace Courses_FrontEnd.Controllers
             }
         }
 
+        [HttpGet]
 
+        public IActionResult PendingList()
+        {
+            IEnumerable<CourseVM> pendingCourses = null;
 
-       
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7230/api/");
+
+                var responseTask = client.GetAsync("Course");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadFromJsonAsync<IList<CourseVM>>();
+                    readTask.Wait();
+
+                    var allCourses = readTask.Result;
+                    pendingCourses = allCourses.Where(course => course.Status == "Pending");
+                }
+                else
+                {
+                    pendingCourses = Enumerable.Empty<CourseVM>();
+
+                    ModelState.AddModelError(string.Empty, "Not Found");
+                }
+            }
+
+            return View(pendingCourses);
+        }
+        public IActionResult ApprovedList()
+        {
+            IEnumerable<CourseVM> ApprovedCourses = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7230/api/");
+
+                var responseTask = client.GetAsync("Course");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadFromJsonAsync<IList<CourseVM>>();
+                    readTask.Wait();
+
+                    var allCourses = readTask.Result;
+                    ApprovedCourses = allCourses.Where(course => course.Status == "Approved");
+                }
+                else
+                {
+                    ApprovedCourses = Enumerable.Empty<CourseVM>();
+
+                    ModelState.AddModelError(string.Empty, "Not Found");
+                }
+            }
+
+            return View(ApprovedCourses);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ApproveCourse(int courseId)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7230/api/");
+
+                    var response = await client.PutAsync($"Course/approve/{courseId}", null);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Show success notification or message
+                        TempData["success"] = "Course status approved successfully.";
+                    }
+                    else
+                    {
+                        // Show error notification or message
+                        TempData["error"] = "An error occurred while approving the course status.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                TempData["error"] = "An error occurred while approving the course status.";
+            }
+
+            return RedirectToAction("PendingList"); // Redirect to the PendingList action
+        }
+
     }
 }
